@@ -14,13 +14,24 @@ public class Main {
 		int T = 1;
 		T = fs.nextInt();
 		for (int tc = 1; tc <= T; tc++) {
-			int n = fs.nextInt(), k = fs.nextInt();
-			char[] s = fs.next().toCharArray();
+			int n = 10;
+			char[][] s = new char[n][];
+			for (int i = 0; i < n; i++) {
+				s[i] = fs.next().toCharArray();
+			}
 			int ans = 0;
 			for (int i = 0; i < n; i++) {
-				if (s[i] == 'B') {
-					ans++;
-					i += k - 1;
+				for (int j = 0; j < n; j++) {
+					if (s[i][j] == 'X') {
+						int value = 5;
+						for (int k = 4; k >= 0; k--) {
+							if ((k <= i && i <= n - k - 1) && (k <= j && j <= n - k - 1)) {
+								ans += value;
+								break;
+							}
+							value--;
+						}
+					}
 				}
 			}
 			System.out.println(ans);
